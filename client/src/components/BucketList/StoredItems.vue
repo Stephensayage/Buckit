@@ -1,7 +1,7 @@
 <template>
   <ul>
     <bucket-list-item
-      v-for="item in listItems"
+      v-for="item in resources"
       :key="item.id"
       :title="item.title"
       :desc="item.desc"
@@ -14,7 +14,7 @@
 import BucketListItem from './BucketListItem.vue';
 
 export default {
-  inject: ['list-items'],
+  inject: ['resources'],
   components: {
     BucketListItem
   }

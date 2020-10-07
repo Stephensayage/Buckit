@@ -1,6 +1,6 @@
 <template>
   <the-header></the-header>
-  <toggle-list-or-add></toggle-list-or-add>
+  <toggle-list-or-add> </toggle-list-or-add>
 </template>
 
 <script>

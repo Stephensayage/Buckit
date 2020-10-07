@@ -1,10 +1,18 @@
 <template>
-  <base-card>
-    <base-button @click="toggleTab('stored-items')">Buckit List</base-button>
-    <base-button @click="toggleTab('add-buck-list-item')"
-      >Add Buckit</base-button
-    >
-  </base-card>
+  <div>
+    <base-card>
+      <base-button
+        @click="setSelectedTab('stored-items')"
+        :mode="toggleStoredMode"
+        >Buckit List</base-button
+      >
+      <base-button
+        @click="setSelectedTab('add-buck-list-item')"
+        :mode="toggleAddMode"
+        >Add Buckit</base-button
+      >
+    </base-card>
+  </div>
   <component :is="selectedTab"></component>
 </template>
 
@@ -33,14 +41,29 @@ export default {
   },
   provide() {
     return {
-      listItems: this.storedListItems
+      resources: this.storedListItems
     };
   },
-  method: {
-    toggleTab(tab) {
+  computed: {
+    toggleStoredMode() {
+      return this.selectedTab === 'stored-items' ? null : 'toggled';
+    },
+    toggleAddMode() {
+      return this.selectedTab === 'add-buck-list-item' ? null : 'toggled';
+    }
+  },
+  methods: {
+    setSelectedTab(tab) {
       this.selectedTab = tab;
-      console.log(this.selectedTab);
     }
   }
 };
 </script>
+
+<style scoped>
+div {
+  margin: 50px auto 50px auto;
+  width: 230px;
+  height: 50px;
+}
+</style>
