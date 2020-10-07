@@ -3,7 +3,7 @@
     <base-card>
       <header>
         <h3>{{ title }}</h3>
-        <button>Delete</button>
+        <base-button mode="flat">Delete</base-button>
       </header>
       <p>{{ desc }}</p>
       <nav>
@@ -43,22 +43,12 @@ p {
   padding: 10px;
 }
 
-button {
-  margin: 0 25px 0 0;
-  width: 60px;
-  color: white;
-  background-color: #e07a5f;
-}
-button:hover {
-  background-color: red;
-}
-
 a {
   padding: 20px;
   text-decoration: none;
-  color: #3d5a80;
+  color: rgb(178, 124, 0);
 }
 a:hover {
-  color: #98c1d9;
+  color: rgb(255, 213, 0);
 }
 </style>

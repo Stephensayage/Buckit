@@ -1,29 +1,17 @@
 <template>
   <the-header></the-header>
-  <stored-items :list-items="storedListItems"></stored-items>
+  <toggle-list-or-add></toggle-list-or-add>
 </template>
 
 <script>
-import StoredItems from './components/BucketList/StoredItems.vue';
+// import StoredItems from './components/BucketList/StoredItems.vue';
 import TheHeader from './components/Layouts/TheHeader.vue';
+import ToggleListOrAdd from './components/BucketList/ToggleListOrAdd.vue';
 
 export default {
   components: {
-    StoredItems,
-    TheHeader
-  },
-  data() {
-    return {
-      storedListItems: [
-        {
-          id: '1',
-          title: 'Offical Guide to Buckit',
-          desc:
-            'Please create as many bucket list items as you want! Links can be included to resources',
-          link: 'https://personalexcellence.co/blog/bucket-list/'
-        }
-      ]
-    };
+    TheHeader,
+    ToggleListOrAdd
   }
 };
 </script>

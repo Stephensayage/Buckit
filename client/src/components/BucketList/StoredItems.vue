@@ -14,10 +14,10 @@
 import BucketListItem from './BucketListItem.vue';
 
 export default {
+  inject: ['list-items'],
   components: {
     BucketListItem
-  },
-  props: ['list-items']
+  }
 };
 </script>
 
