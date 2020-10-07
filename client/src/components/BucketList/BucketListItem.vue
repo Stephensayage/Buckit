@@ -1,20 +1,21 @@
 <template>
   <li>
-    <div>
+    <base-card>
       <header>
         <h3>{{ title }}</h3>
         <button>Delete</button>
       </header>
-    </div>
-    <p>{{ desc }}</p>
-    <nav>
-      <a :href="link" target="_blank">Link</a>
-    </nav>
+      <p>{{ desc }}</p>
+      <nav>
+        <a :href="link" target="_blank">Link</a>
+      </nav>
+    </base-card>
   </li>
 </template>
 
 <script>
 export default {
+  components: {},
   props: ['title', 'desc', 'link']
 };
 </script>
@@ -34,17 +35,30 @@ header {
 h3 {
   font-size: 26px;
   margin: 10px 0;
+  padding: 10px;
 }
 
 p {
   margin: 10px 0;
+  padding: 10px;
+}
+
+button {
+  margin: 0 25px 0 0;
+  width: 60px;
+  color: white;
+  background-color: #e07a5f;
+}
+button:hover {
+  background-color: red;
 }
 
 a {
+  padding: 20px;
   text-decoration: none;
-  color: rgb(0, 163, 217);
+  color: #3d5a80;
 }
 a:hover {
-  color: rgb(0, 98, 130);
+  color: #98c1d9;
 }
 </style>

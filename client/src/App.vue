@@ -1,21 +1,16 @@
 <template>
-  <ul>
-    <bucket-list-item
-      v-for="item in storedListItems"
-      :key="item.id"
-      :title="item.title"
-      :desc="item.desc"
-      :link="item.link"
-    ></bucket-list-item>
-  </ul>
+  <the-header></the-header>
+  <stored-items :list-items="storedListItems"></stored-items>
 </template>
 
 <script>
-import BucketListItem from './components/BucketList/BucketListItem.vue';
+import StoredItems from './components/BucketList/StoredItems.vue';
+import TheHeader from './components/Layouts/TheHeader.vue';
 
 export default {
   components: {
-    BucketListItem
+    StoredItems,
+    TheHeader
   },
   data() {
     return {
