@@ -1,19 +1,23 @@
 <template>
   <div>
-    <base-card>
-      <base-button
-        @click="setSelectedTab('stored-items')"
-        :mode="toggleStoredMode"
-        >Buckit List</base-button
-      >
-      <base-button
-        @click="setSelectedTab('add-buck-list-item')"
-        :mode="toggleAddMode"
-        >Add Buckit</base-button
-      >
-    </base-card>
+    <section>
+      <base-card>
+        <base-button
+          @click="setSelectedTab('stored-items')"
+          :mode="toggleStoredMode"
+          >Buckit List</base-button
+        >
+        <base-button
+          @click="setSelectedTab('add-buck-list-item')"
+          :mode="toggleAddMode"
+          >Add Buckit</base-button
+        >
+      </base-card>
+    </section>
+    <keep-alive>
+      <component :is="selectedTab"></component>
+    </keep-alive>
   </div>
-  <component :is="selectedTab"></component>
 </template>
 
 <script>
@@ -41,7 +45,9 @@ export default {
   },
   provide() {
     return {
-      resources: this.storedListItems
+      resources: this.storedListItems,
+      addResource: this.addResource,
+      removeItem: this.removeItem
     };
   },
   computed: {
@@ -55,6 +61,22 @@ export default {
   methods: {
     setSelectedTab(tab) {
       this.selectedTab = tab;
+    },
+    addResource(title, desc, url) {
+      const newResource = {
+        id: new Date().toISOString(),
+        title: title,
+        desc: desc,
+        link: url
+      };
+      this.storedListItems.push(newResource);
+      this.selectedTab = 'stored-items';
+    },
+    removeItem(itemId) {
+      const itemIndex = this.storedListItems.findIndex(
+        item => item.id === itemId
+      );
+      this.storedListItems.splice(itemIndex, 1);
     }
   }
 };
@@ -62,8 +84,12 @@ export default {
 
 <style scoped>
 div {
+  width: 100%;
   margin: 50px auto 50px auto;
-  width: 230px;
   height: 50px;
+}
+section {
+  margin: 0 auto;
+  width: 70%;
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
-  <the-header></the-header>
-  <toggle-list-or-add> </toggle-list-or-add>
+  <div>
+    <the-header></the-header>
+    <toggle-list-or-add />
+  </div>
 </template>
 
 <script>

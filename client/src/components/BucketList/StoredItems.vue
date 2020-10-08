@@ -1,13 +1,16 @@
 <template>
-  <ul>
-    <bucket-list-item
-      v-for="item in resources"
-      :key="item.id"
-      :title="item.title"
-      :desc="item.desc"
-      :link="item.link"
-    ></bucket-list-item>
-  </ul>
+  <div>
+    <ul>
+      <bucket-list-item
+        v-for="item in resources"
+        :key="item.id"
+        :id="item.id"
+        :title="item.title"
+        :desc="item.desc"
+        :link="item.link"
+      ></bucket-list-item>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -25,6 +28,6 @@ export default {
 ul {
   list-style: none;
   margin: 25px auto;
-  width: 100%;
+  width: 90%;
 }
 </style>

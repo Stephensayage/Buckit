@@ -1,18 +1,36 @@
 <template>
   <div class="form-ctn">
+    <base-dialog
+      v-if="inputIsInvalid"
+      title="Invalid User Input"
+      @close="closeDialog"
+    >
+      <template #default>
+        <p>At Least One Input Value is Invalid</p>
+        <p>Please Check All Input Fields</p>
+      </template>
+      <template #actions>
+        <base-button @click="closeDialog">X</base-button>
+      </template>
+    </base-dialog>
     <base-card>
-      <form>
+      <form @submit.prevent="submitForm">
         <div class="form">
           <label>Title</label>
-          <input id="title" name="title" type="text" />
+          <input id="title" name="title" type="text" ref="titleData" />
         </div>
         <div class="form">
           <label>Description</label>
-          <textarea id="description" name="description" rows="3"></textarea>
+          <textarea
+            id="description"
+            name="description"
+            rows="3"
+            ref="descData"
+          ></textarea>
         </div>
         <div class="form">
           <label>Link</label>
-          <input id="link" name="link" type="url" />
+          <input id="link" name="link" type="url" ref="linkData" />
         </div>
         <div>
           <base-button type="submit" mode="submit">Submit</base-button>
@@ -21,6 +39,41 @@
     </base-card>
   </div>
 </template>
+
+<script>
+export default {
+  inject: { addResource: 'addResource' },
+  data() {
+    return {
+      inputIsInvalid: false
+    };
+  },
+  methods: {
+    submitForm() {
+      const enteredTitle = this.$refs.titleData.value;
+      const enteredDesc = this.$refs.descData.value;
+      const enteredLink = this.$refs.linkData.value;
+
+      if (
+        enteredTitle.trim() === '' ||
+        enteredDesc.trim() === '' ||
+        enteredLink.trim() === ''
+      ) {
+        this.inputIsInvalid = true;
+        return;
+      }
+
+      this.addResource(enteredTitle, enteredDesc, enteredLink);
+      this.$refs.titleData.value = '';
+      this.$refs.descData.value = '';
+      this.$refs.linkData.value = '';
+    },
+    closeDialog() {
+      this.inputIsInvalid = false;
+    }
+  }
+};
+</script>
 
 <style scoped>
 label {

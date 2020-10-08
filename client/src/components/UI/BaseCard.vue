@@ -6,7 +6,7 @@
 
 <style scoped>
 div {
-  margin: 0px auto;
+  margin: 35px auto;
   width: 100%;
   height: auto;
   border-radius: 15px;
